@@ -28,4 +28,5 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer self-update
 
+# logs are not written due to permission issues. Fixed by checking a SO answer: https://stackoverflow.com/questions/50552970/laravel-docker-the-stream-or-file-var-www-html-storage-logs-laravel-log-co
 RUN chmod o+w ./storage/ -R
