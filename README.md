@@ -35,5 +35,11 @@ this generates a key and add it to the .env file
 It is good that php-laravel project is up and running locally but these days eveything needs to be dockerized. Therefore, let's create a Dockerfile to run this project in a docker container.
 Most of the instructions written in Dockerfile are explained in comment there.
 
+## Build image and run a container
+```
+docker build -t minimal-php .
+docker run -d -p 8000:80 --name minimal-php minimal-php
+```
+
 
 
