@@ -24,3 +24,16 @@ cp .env.example .env
 php artisan serve
 ```
 
+After visiting http://localhost/ we get this error "No application encryption key has been specified." This is because a downloaded project does not have APP_KEY set up for the project. Everytime we download a laravel project we need to generate APP_KEY by running 
+```
+php artisan key:generate
+```
+this generates a key and add it to the .env file
+
+## Adding Dockerfile
+
+It is good that php-laravel project is up and running locally but these days eveything needs to be dockerized. Therefore, let's create a Dockerfile to run this project in a docker container.
+Most of the instructions written in Dockerfile are explained in comment there.
+
+
+
