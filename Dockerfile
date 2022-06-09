@@ -11,8 +11,8 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Install xdebug for step debugging
+# when installed with pecl, we need to explicitely add extension in php.ini file
 RUN pecl install xdebug
-COPY ./xdebug/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/
 COPY ./xdebug/99-xdebug.ini /usr/local/etc/php/conf.d/
 
 # Install Composer - the documentation way
