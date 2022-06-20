@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,13 @@ use Illuminate\Support\Facades\Route;
 | When we include 'auth' middleware, if no guard is mentioned, the default guard is also considered, which is 'web'.
 | Refer to config\Auth.php for this.
 | The code for this can be found in Illuminate\Auth\AuthManager.php
+| Also,
+| When we include 'auth' middleware, for unauthenticated attempt, it looks for a 'login' controller (by default)
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('auth');
+Route::redirect('/', '/login', 301);
+Route::view('/login', 'login')->name('login');
+Route::post('/login', LoginController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::view('/welcome', 'welcome')->name('welcome');
+});
