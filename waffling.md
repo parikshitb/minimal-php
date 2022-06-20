@@ -1,4 +1,4 @@
-Few mysterious problems I encountered:
+### Few mysterious problems I encountered:
 
 1. xdebug is still not very dependable. First, it does not *break* if breakpoint is on the very first line of the function body (opening curly bracket at the beginnning of each function). Also, when I installed Redis, xdebug stopped working. I added few more **xdebug** settings in php.ini file to fix that.
 
@@ -15,12 +15,11 @@ Few mysterious problems I encountered:
 4. mysql installation and commands
     https://flaviocopes.com/mysql-how-to-install/
 
-    $ brew install mysql
-    $ brew services start mysql
-    $ brew services stop mysql
+    + brew install mysql
+    + brew services start mysql
+    + brew services stop mysql
 
-    mysql.server start
-    mysql.server stop
-    mysql.server status
-
-    mysql -u root -p
+    + mysql.server start
+    + mysql.server stop
+    + mysql.server status
+    + mysql -u root -p
