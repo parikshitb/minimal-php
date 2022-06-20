@@ -11,3 +11,16 @@ Few mysterious problems I encountered:
     5. Next, Auth::Attempt() method. This method still returns *false* when correct password and username is passed. When debugged further, it is found that laravel assumes that password stored in the database is hashed one(+1). This means we need to hash a password before storing it in database. bcrypt haser is used for the purpose.
 
 3. Once all these settings are done, I was able to run+debug. 
+
+4. mysql installation and commands
+    https://flaviocopes.com/mysql-how-to-install/
+
+    $ brew install mysql
+    $ brew services start mysql
+    $ brew services stop mysql
+
+    mysql.server start
+    mysql.server stop
+    mysql.server status
+
+    mysql -u root -p
