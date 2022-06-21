@@ -1,0 +1,19 @@
+services:
+  web:
+    build: ./docker/web/
+    container_name: php_apache
+    ports:
+      - "8000:80"
+    volumes:
+      - type: bind
+        source: ./
+        target: /var/www/html/
+      - type: bind
+        source: ./xdebug/99-xdebug.ini
+        target: /usr/local/etc/php/conf.d/99-xdebug.ini
+  db:
+    build: ./docker/db/
+    ports:
+      - "8080:8080"
+
+

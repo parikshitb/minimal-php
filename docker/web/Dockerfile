@@ -1,6 +1,6 @@
 FROM php:8.1-apache
-COPY ./ /var/www/html/
 
+RUN a2enmod rewrite
 # Since we are using laravel project, index.php file is inside public folder
 # To change apache documentroot, check https://hub.docker.com/_/php
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public/
@@ -13,7 +13,6 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 # Install xdebug for step debugging
 # when installed with pecl, we need to explicitely add extension in php.ini file
 RUN pecl install xdebug
-COPY ./xdebug/99-xdebug.ini /usr/local/etc/php/conf.d/
 
 # Install Composer - the documentation way
 #RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -32,6 +31,3 @@ COPY ./xdebug/99-xdebug.ini /usr/local/etc/php/conf.d/
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer self-update
-
-# logs are not written due to permission issues. Fixed by checking a SO answer: https://stackoverflow.com/questions/50552970/laravel-docker-the-stream-or-file-var-www-html-storage-logs-laravel-log-co
-RUN chmod o+w ./storage/ -R
