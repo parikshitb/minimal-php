@@ -11,9 +11,12 @@ services:
       - type: bind
         source: ./xdebug/99-xdebug.ini
         target: /usr/local/etc/php/conf.d/99-xdebug.ini
+    depends_on:
+      - "db"
   db:
     build: ./docker/db/
+    container_name: my_host
     ports:
-      - "8080:8080"
+      - "3306:3306"
 
 

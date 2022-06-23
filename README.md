@@ -35,10 +35,29 @@ this generates a key and add it to the .env file
 It is good that php-laravel project is up and running locally but these days eveything needs to be dockerized. Therefore, let's create a Dockerfile to run this project in a docker container.
 Most of the instructions written in Dockerfile are explained in comment there.
 
-## Build image and run a container
+EDIT
+There are 2 containers, one for web server and other for database. To manage them easily, we are using docker compose.
+To make the project up and running follow these steps 
 ```
-docker build -t minimal-php .
-docker run -d -p 8000:80 --name minimal-php minimal-php
+# copy .env.localdev into .env. This file has docker related configurations
+cp .env.localdev .env
+
+# UP; this will create 2 container services 
+docker compoes up -d
+
+# go to web server container and migrate tables
+php artisan migrate
+
+# insert data into users table
+```
+
+## Build image and run a individual containers
+```
+docker build -t php_image <path to web server docker file>
+docker run -d -p 8000:80 --name php_container php_image
+
+docker build -t mysql_host_image <path to mysql docker file>
+docker run -d --name mysql_host_container mysql_host_image
 ```
 
 

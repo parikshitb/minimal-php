@@ -14,6 +14,9 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 # when installed with pecl, we need to explicitely add extension in php.ini file
 RUN pecl install xdebug
 
+# Why I did not need to install this on my local machine?
+RUN docker-php-ext-install pdo_mysql
+
 # Install Composer - the documentation way
 #RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 #RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
@@ -31,3 +34,9 @@ RUN pecl install xdebug
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer self-update
+
+# Fix this later (todo)
+WORKDIR /var/www/html/
+# RUN ln -snf /var/www/html/.env.localdev /var/www/html/.env
+# RUN cd /var/www/html/
+# RUN php artisan migrate
