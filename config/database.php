@@ -123,24 +123,43 @@ return [
 
         'client' => env('REDIS_CLIENT', 'phpredis'),
 
-        'default' => [
-            'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'username' => env('REDIS_USERNAME'),
-            'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT', '6379'),
-            'database' => env('REDIS_DB', '0'),
+        'options' => [
+            'cluster' => 'redis', 
         ],
 
-        'cache' => [
-            'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'username' => env('REDIS_USERNAME'),
-            'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT', '6379'),
-            'database' => env('REDIS_CACHE_DB', '0'),
+        'clusters' => [
+            'cache' =>[
+                [
+                    'host' => '127.0.0.1',
+                    'port' => '7000',
+                    'database' => '0',
+                ],
+                [
+                    'host' => '127.0.0.1',
+                    'port' => '7001',
+                    'database' => '0',
+                ],
+                [
+                    'host' => '127.0.0.1',
+                    'port' => '7002',
+                    'database' => '0',
+                ],
+                [
+                    'host' => '127.0.0.1',
+                    'port' => '7003',
+                    'database' => '0',
+                ],
+                [
+                    'host' => '127.0.0.1',
+                    'port' => '7004',
+                    'database' => '0',
+                ],
+                [
+                    'host' => '127.0.0.1',
+                    'port' => '7005',
+                    'database' => '0',
+                ]
+            ]
         ],
-
     ],
-
 ];
