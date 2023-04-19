@@ -16,7 +16,4 @@ services:
   db:
     build: ./docker/db/
     container_name: my_host
-    ports:
-      - "3306:3306"
-
 

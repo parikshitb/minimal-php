@@ -23,3 +23,8 @@
     + mysql.server stop
     + mysql.server status
     + mysql -u root -p
+
+5. Connect to mysql db by 
+```
+dc exec db mysql -h my_host -u root -palphanum3ric -P 3306 my_db
+```

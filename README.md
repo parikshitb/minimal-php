@@ -43,10 +43,10 @@ To make the project up and running follow these steps
 ln -s .env.localdev .env
 
 # UP; this will create 2 container services 
-docker compoes up -d
+docker-compoes up -d
 
-# go to web server container and migrate tables
-php artisan migrate
+# Create user
+docker-compose exec web php artisan migrate
 
 # insert data into users table
 ```
