@@ -22,6 +22,21 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert([
+            [
+                'name' => 'parikshit',
+                'email' => 'parixit23+artisan@gmail.com',
+                //hashing algorithm = bcrypt rounds = 10. 
+                //Ref: config/hashing.php
+                'password' => '$2y$10$dgiwV6OrD3W4I.ZCUiQ27efa4eBk6xUpZXvfHuNI7/.h0YFZuc7Va',
+            ],
+            [
+                'name' => 'abc',
+                'email' => 'abc@def.com',
+                'password' => '$2y$10$mZdWA38wAynqUYt.S9XtsuvTH7XC/xIDblR2S9V1QTGtTjSvluMnS',
+            ],
+        ]);
     }
 
     /**
