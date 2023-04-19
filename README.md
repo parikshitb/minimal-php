@@ -40,7 +40,7 @@ There are 2 containers, one for web server and other for database. To manage the
 To make the project up and running follow these steps 
 ```
 # copy .env.localdev into .env. This file has docker related configurations
-cp .env.localdev .env
+ln -s .env.localdev .env
 
 # UP; this will create 2 container services 
 docker compoes up -d
