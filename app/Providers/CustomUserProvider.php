@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Auth\GenericUser;
+use App\Auth\CustomUser;
 use Illuminate\Contracts\Auth\Authenticatable;
 use App\Providers\Contracts\CustomUserProvider as CustomUserProviderContract;
 
@@ -20,9 +20,10 @@ class CustomUserProvider implements CustomUserProviderContract
         //For now, just return a dummy user
         $attributes = array(
             'id' => 'test',
+            'custom_id' => 'custom_value',
             'password' => 'password',
         );
-        return new GenericUser($attributes);
+        return new CustomUser($attributes);
     }
     
     /**

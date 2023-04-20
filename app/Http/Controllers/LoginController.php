@@ -37,6 +37,10 @@ class LoginController extends Controller
             Log::info($user->getAuthIdentifierName());
             Log::info(Auth::id());
         }
+        else
+        {
+            Log::info('USER NULL');
+        }
         $request->validate(['name' => ['required'], 'password' => ['required']]);
         return redirect()->route('welcome');
     }
