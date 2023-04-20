@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Illuminate\Auth\GenericUser;
 use Illuminate\Contracts\Auth\Authenticatable;
 use App\Providers\Contracts\CustomUserProvider as CustomUserProviderContract;
 
-//TODO: Implement and use Custom Provider
 class CustomUserProvider implements CustomUserProviderContract
 {
     /**
@@ -17,7 +17,12 @@ class CustomUserProvider implements CustomUserProviderContract
      */
     public function retrieveByCookie(string $name)
     {
-    throw new \Exception('Not Implemented.');
+        //For now, just return a dummy user
+        $attributes = array(
+            'id' => 'test',
+            'password' => 'password',
+        );
+        return new GenericUser($attributes);
     }
     
     /**

@@ -6,9 +6,14 @@ use App\Auth\Contracts\CustomGuard as CustomGuardContract;
 use Illuminate\Contracts\Auth\Authenticatable;
 use App\Providers\Contracts\CustomUserProvider;
 
-//TODO: Implement and use Custom Guard
 class CustomGuard implements CustomGuardContract
 {
+    /**
+     * Authenticated user
+     * @var Authenticatable
+     */
+    protected $user;
+
     /**
      * The user provider implementation.
      *
@@ -30,7 +35,10 @@ class CustomGuard implements CustomGuardContract
     {
         $user = $this->provider->retrieveByCookie('');
         if ($user != null)
+        {
+            $this->setUser($user);
             return true;
+        }
         return false;
     }
 
@@ -60,7 +68,7 @@ class CustomGuard implements CustomGuardContract
      */
     public function user()
     {
-        throw new \Exception('Not Implemented.');
+        return $this->user;
     }
 
     /**
@@ -70,7 +78,11 @@ class CustomGuard implements CustomGuardContract
      */
     public function id()
     {
-        throw new \Exception('Not Implemented.');
+        if($this->user())
+        {
+            return $this->user->getAuthIdentifier();
+        }
+        return null;
     }
 
     /**
@@ -93,7 +105,7 @@ class CustomGuard implements CustomGuardContract
      */
     public function hasUser()
     {
-        throw new \Exception('Not Implemented.');
+        return $this->user != null;
     }
 
     /**
@@ -104,6 +116,6 @@ class CustomGuard implements CustomGuardContract
      */
     public function setUser(Authenticatable $user)
     {
-        throw new \Exception('Not Implemented.');
+        $this->user = $user;
     }
 }

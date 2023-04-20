@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -29,10 +30,14 @@ class LoginController extends Controller
         }
         Redis::set('cnt', $limit);
         */
-        $credentials = $request->validate(['name' => ['required'], 'password' => ['required']]);
-        if (Auth::validate($credentials)) {
-            return redirect()->route('welcome');
+
+        $user = Auth::user();
+        if($user != null)
+        {
+            Log::info($user->getAuthIdentifierName());
+            Log::info(Auth::id());
         }
-        return redirect()->route('login');
+        $request->validate(['name' => ['required'], 'password' => ['required']]);
+        return redirect()->route('welcome');
     }
 }

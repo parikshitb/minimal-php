@@ -29,6 +29,6 @@ use App\Http\Controllers\LoginController;
 Route::redirect('/', '/login', 301);
 Route::view('/login', 'login')->name('login');
 Route::post('/login', LoginController::class);
+Route::view('/welcome', 'welcome')->name('welcome');
 Route::middleware(['auth'])->group(function () {
-    Route::view('/welcome', 'welcome')->name('welcome');
 });
