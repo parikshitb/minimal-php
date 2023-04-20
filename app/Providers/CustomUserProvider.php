@@ -5,11 +5,21 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\UserProvider;
+use App\Providers\Contracts\CustomUserProvider as CustomUserProviderContract;
 
 //TODO: Implement and use Custom Provider
-class CustomUserProvider implements UserProvider
+class CustomUserProvider implements CustomUserProviderContract
 {
+    /**
+     * Retrieve user from Cookie
+     * @param string $name
+     * @return Authenticatable|null
+     */
+    public function retrieveByCookie(string $name)
+    {
+    throw new \Exception('Not Implemented.');
+    }
+    
     /**
      * Retrieve a user by their unique identifier.
      *

@@ -2,25 +2,38 @@
 
 namespace App\Auth;
 
-use Illuminate\Contracts\Auth\Guard;
+use App\Auth\Contracts\CustomGuard as CustomGuardContract;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\UserProvider;
+use App\Providers\Contracts\CustomUserProvider;
 
 //TODO: Implement and use Custom Guard
-class CustomGuard implements Guard
+class CustomGuard implements CustomGuardContract
 {
-
     /**
      * The user provider implementation.
      *
-     * @var UserProvider
+     * @var CustomUserProvider
      */
     protected $provider;
 
-    public function __construct(UserProvider $provider)
+    public function __construct(CustomUserProvider $provider)
     {
         $this->provider = $provider;
     }
+
+    /**
+     * Attempt to authenticate a user
+     *
+     * @return bool
+     */
+    public function attempt()
+    {
+        $user = $this->provider->retrieveByCookie('');
+        if ($user != null)
+            return true;
+        return false;
+    }
+
     /**
      * Determine if the current user is authenticated.
      *

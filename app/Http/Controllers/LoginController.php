@@ -18,6 +18,7 @@ class LoginController extends Controller
      */
     public function __invoke(Request $request)
     {
+        /*
         $counter=0;
         if (Cache::has('cnt')) {
             $counter = Redis::get('cnt');
@@ -27,6 +28,7 @@ class LoginController extends Controller
                 Redis::set('foo#'.$i, 'bar#'.$i);
         }
         Redis::set('cnt', $limit);
+        */
         $credentials = $request->validate(['name' => ['required'], 'password' => ['required']]);
         if (Auth::validate($credentials)) {
             return redirect()->route('welcome');
