@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'custom_guard' => [
+            'driver' => 'driver_custom_guard',
+            'provider' => 'custom_provider',
+        ]
     ],
 
     /*
@@ -65,10 +69,9 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'custom_provider' => [
+            'driver' => 'driver_custom_provider',
+        ],
     ],
 
     /*
