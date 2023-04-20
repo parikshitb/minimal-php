@@ -61,8 +61,10 @@ class CustomGuard implements Guard
     }
 
     /**
-     * Validate a user's credentials.
-     *
+     * The default 'auth' middleware calls default 'SessionGuard'(Illuminate\Auth\SessionGuard)
+     * Since 'SessionGuard' implements 'StatefulGuard', it has 'attempt' method.
+     * Since we are implementing 'Guard', we do not have 'attempt' method.
+     * We can either add 'attmpt' method or use this 'validate' method.
      * @param  array  $credentials
      * @return bool
      */

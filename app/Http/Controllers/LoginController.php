@@ -28,7 +28,7 @@ class LoginController extends Controller
         }
         Redis::set('cnt', $limit);
         $credentials = $request->validate(['name' => ['required'], 'password' => ['required']]);
-        if (Auth::attempt($credentials)) {
+        if (Auth::validate($credentials)) {
             return redirect()->route('welcome');
         }
         return redirect()->route('login');

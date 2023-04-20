@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Auth::extend('driver_custom_guard', function(Application $app, string $name, array $config){
-            return new CustomGuard(Auth::createUserProvider());
+            return new CustomGuard(Auth::createUserProvider($config['provider']));
         });
 
         Auth::provider('driver_custom_provider', function(Application $app, array $config){

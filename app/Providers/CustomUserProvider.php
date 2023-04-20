@@ -4,68 +4,66 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticableContract;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\UserProvider;
 
 //TODO: Implement and use Custom Provider
-class CustomUserProvider implements AuthenticableContract
+class CustomUserProvider implements UserProvider
 {
     /**
-     * Get the name of the unique identifier for the user.
+     * Retrieve a user by their unique identifier.
      *
-     * @return string
+     * @param  mixed  $identifier
+     * @return Authenticatable|null
      */
-    public function getAuthIdentifierName()
+    public function retrieveById($identifier)
     {
         throw new \Exception('Not Implemented.');
     }
 
     /**
-     * Get the unique identifier for the user.
+     * Retrieve a user by their unique identifier and "remember me" token.
      *
-     * @return mixed
+     * @param  mixed  $identifier
+     * @param  string  $token
+     * @return Authenticatable|null
      */
-    public function getAuthIdentifier()
+    public function retrieveByToken($identifier, $token)
     {
         throw new \Exception('Not Implemented.');
     }
 
     /**
-     * Get the password for the user.
+     * Update the "remember me" token for the given user in storage.
      *
-     * @return string
-     */
-    public function getAuthPassword()
-    {
-        throw new \Exception('Not Implemented.');
-    }
-
-    /**
-     * Get the token value for the "remember me" session.
-     *
-     * @return string
-     */
-    public function getRememberToken()
-    {
-        throw new \Exception('Not Implemented.');
-    }
-
-    /**
-     * Set the token value for the "remember me" session.
-     *
-     * @param  string  $value
+     * @param  Authenticatable  $user
+     * @param  string  $token
      * @return void
      */
-    public function setRememberToken($value)
+    public function updateRememberToken(Authenticatable $user, $token)
     {
         throw new \Exception('Not Implemented.');
     }
 
     /**
-     * Get the column name for the "remember me" token.
+     * Retrieve a user by the given credentials.
      *
-     * @return string
+     * @param  array  $credentials
+     * @return Authenticatable|null
      */
-    public function getRememberTokenName()
+    public function retrieveByCredentials(array $credentials)
+    {
+        throw new \Exception('Not Implemented.');
+    }
+
+    /**
+     * Validate a user against the given credentials.
+     *
+     * @param  Authenticatable  $user
+     * @param  array  $credentials
+     * @return bool
+     */
+    public function validateCredentials(Authenticatable $user, array $credentials)
     {
         throw new \Exception('Not Implemented.');
     }
